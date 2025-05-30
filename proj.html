@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+  <meta charset="UTF-8" />
+  <title>Editor Gráfico</title>
+  <style>
+    canvas { border: 1px solid black; }
+    .toolbar {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 8px;
+      background: #f0f0f0;
+      padding: 6px;
+    }
+    .toolbar button, .toolbar select, .color-swatch {
+      padding: 4px;
+      cursor: pointer;
+    }
+    .color-swatch {
+      width: 24px;
+      height: 24px;
+      border: 1px solid #000;
+      display: inline-block;
+    }
+    .color-swatch.selected {
+      outline: 2px solid #000;
+    }
+    .divider {
+      border-left: 1px solid #ccc;
+      height: 24px;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="toolbar">
+    <button onclick="setTool('line')">&#10134;</button>
+    <button onclick="setTool('retangulo')">&#9633;</button>
+    <button onclick="setTool('triangulo')">&#9651;</button>
+    <button onclick="setTool('losango')">&#9670;</button>
+    <button onclick="setTool('pentagono')">&#11040;</button>
+
+    <div class="divider"></div>
+
+    <label for="espessura">Tamanho:</label>
+    <select id="espessura">
+      <option value="1">1px</option>
+      <option value="2">2px</option>
+      <option value="3">3px</option>
+      <option value="4">4px</option>
+      <option value="5">5px</option>
+    </select>
+
+    <label for="tracejado">Traço:</label>
+    <select id="tracejado">
+      <option value="solid">Contínua</option>
+      <option value="5,5">Tracejada</option>
+      <option value="10,10">Traço longo</option>
+      <option value="2,6">Pontilhada</option>
+    </select>
+
+    <div class="divider"></div>
+
+    <button onclick="setTool('borracha')">&#128396;</button>
+
+    <div class="divider"></div>
+
+    <div id="cores">
+      <!-- As cores serão geradas dinamicamente pelo JavaScript -->
+    </div>
+
+    <div class="divider"></div>
+
+    <button onclick="salvarArquivo()">Salvar</button>
+    <button onclick="carregarArquivo()">Carregar</button>
+    <button onclick="limparTela()">Limpar</button>
+  </div>
+
+  <canvas id="canvas" width="800" height="600"></canvas>
+
+  <script src="script.js"></script>
+</body>
+</html>
